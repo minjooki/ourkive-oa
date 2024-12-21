@@ -44,7 +44,7 @@ contract Multisig {
         emit TransactionSubmitted(transactionId, _to, _value);
     }
 
-    function confirmTransaction(uint _transactionId) public onlyOwner {
+    function approveTransaction(uint _transactionId) public onlyOwner {
         require(!transactions[_transactionId].executed, "Transaction already executed");
         require(!approvals[_transactionId][msg.sender], "Transaction already approved by this signer");
 
@@ -58,7 +58,14 @@ contract Multisig {
         emit TransactionConfirmed(_transactionId);
     }
 
-    function executeTransaction(uint _transactionId) {
+    function executeTransaction(uint _transactionId) internal {
+        require(transactions[_transactionId].confirmations >= requiredApprovals, "Not enough approvals");
+        require(!transactions[_transactionId].executed, "Transaction already executed");
 
+        (bool success, ) = transactions[_transactionId].to.call{value: transactions[_transactionId].value}("");
+        require(success, "Transaction failed");
+
+        transactions[_transactionId].executed = true;
+        emit TransactionExecuted(_transactionId);
     }
 }
