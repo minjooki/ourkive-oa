@@ -17,7 +17,7 @@ contract Multisig {
     Transaction[] public transactions;
 
     event TransactionSubmitted(uint transactionId, address to, uint256 value);
-    event TransactionConfirmed(uint transactionId, address owner);
+    event TransactionConfirmed(uint transactionId);
     event TransactionExecuted(uint transactionId);
 
     modifier onlyOwner() {
@@ -42,5 +42,23 @@ contract Multisig {
             confirmations: 0
         }));
         emit TransactionSubmitted(transactionId, _to, _value);
+    }
+
+    function confirmTransaction(uint _transactionId) public onlyOwner {
+        require(!transactions[_transactionId].executed, "Transaction already executed");
+        require(!approvals[_transactionId][msg.sender], "Transaction already approved by this signer");
+
+        approvals[_transactionId][msg.sender] = true;
+        transactions[_transactionId].confirmations += 1;
+
+        if (transactions[_transactionId].confirmations >= requiredApprovals) {
+            executeTransaction(_transactionId);
+        }
+        
+        emit TransactionConfirmed(_transactionId);
+    }
+
+    function executeTransaction(uint _transactionId) {
+
     }
 }
