@@ -1,0 +1,178 @@
+{
+  "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+  "abi": [
+    {
+      "type": "constructor",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "address[3]",
+          "name": "_owners"
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "anonymous": false,
+      "name": "TransactionConfirmed",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "transactionId",
+          "indexed": false
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "anonymous": false,
+      "name": "TransactionExecuted",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "transactionId",
+          "indexed": false
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "anonymous": false,
+      "name": "TransactionSubmitted",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "transactionId",
+          "indexed": false
+        },
+        {
+          "type": "address",
+          "name": "to",
+          "indexed": false
+        },
+        {
+          "type": "uint256",
+          "name": "value",
+          "indexed": false
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "approvals",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "gas": 29000000,
+      "inputs": [
+        {
+          "type": "uint256"
+        },
+        {
+          "type": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "approveTransaction",
+      "constant": false,
+      "payable": false,
+      "gas": 29000000,
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "_transactionId"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "owners",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "gas": 29000000,
+      "inputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "address"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "requiredApprovals",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "gas": 29000000,
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "submitTransaction",
+      "constant": false,
+      "payable": false,
+      "gas": 29000000,
+      "inputs": [
+        {
+          "type": "address",
+          "name": "_to"
+        },
+        {
+          "type": "uint256",
+          "name": "_value"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "transactions",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "gas": 29000000,
+      "inputs": [
+        {
+          "type": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "address",
+          "name": "to"
+        },
+        {
+          "type": "uint256",
+          "name": "value"
+        },
+        {
+          "type": "bool",
+          "name": "executed"
+        },
+        {
+          "type": "uint256",
+          "name": "confirmations"
+        }
+      ]
+    }
+  ],
+  "numDeployments": 1
+}

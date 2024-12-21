@@ -2,9 +2,8 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract Marketplace is Ownable {
+contract Marketplace {
     address public multisigContract;
 
     struct Listing {
@@ -50,19 +49,19 @@ contract Marketplace is Ownable {
             tokenId: tokenId
         });
 
-        emit ItemListed(msg.sender, nftAddress, tokenId, price);
+        emit ItemListed(msg.sender, nftContract, tokenId, price);
 
     }
 
-    function buyItem(address nftContract, uint tokenId) external isPayable {
+    function buyItem(address nftContract, uint tokenId) external payable {
         Listing memory listing = listings[tokenId];
         require(msg.value >= listing.price, "Not enough funds to purchase");
 
         IERC721(nftContract).safeTransferFrom(listing.seller, msg.sender, tokenId);
         delete listings[tokenId];
         payable(listing.seller).transfer(listing.price);
-        
-        emit ItemBought(msg.sender, nftAddress, tokenId, listedItem.price);
+
+        emit ItemBought(msg.sender, nftContract, tokenId, listing.price);
     }
 
 }
