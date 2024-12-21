@@ -11,5 +11,16 @@
   "license": "ISC",
   "dependencies": {
     "@openzeppelin/contracts": "^5.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minjooki/ourkive-oa.git"
+  },
+  "bugs": {
+    "url": "https://github.com/minjooki/ourkive-oa/issues"
+  },
+  "homepage": "https://github.com/minjooki/ourkive-oa#readme",
+  "devDependencies": {
+    "hardhat": "^2.22.17"
   }
 }
