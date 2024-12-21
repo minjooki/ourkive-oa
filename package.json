@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/minjooki/ourkive-oa#readme",
   "devDependencies": {
-    "hardhat": "^2.22.17"
+    "hardhat": "^2.22.17",
+    "hardhat-deploy": "^0.14.0"
   }
 }
